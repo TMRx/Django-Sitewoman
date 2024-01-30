@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+
 
 # Create your views here.
 
@@ -13,5 +14,8 @@ def categories_by_slug(request, cat_slug):
     return HttpResponse(f'<h1> Статті по  категоріям </h1><p>slug: {cat_slug} </p>')
 
 def archive(request, year):
-    return HttpResponse(f'<h1> Архів по рокам  </h1><p>{year} </p>')
+    return HttpResponse(f'<h1> Архів по рокам  </h1><p>{year}</p>')
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound('<h1>Сторінка не знайдена</h1>')
 
