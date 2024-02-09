@@ -2,12 +2,28 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
-# Create your views here.
+menu = ['Про сайт', 'Добавитии статтю', 'звоторній звязок', 'Ввійти']
+
+class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
 def index(request):
-    return HttpResponse('Сторінка додатку Women')
+    data = {
+        'title': 'Головна сторінка',
+        'menu': menu,
+        'dict': {'key_1': 'value_1', 'key_2': 'value_2'},
+        'obj': MyClass(10, 22)
+    }
+    return render(request, 'women/index.html', context=data)
+
+
+def about(request):
+    return render(request, 'women/about.html', {'title': 'Про сайт'})
 
 def categories(request, cat_id):
+
     return HttpResponse(f'<h1> Статті по  категоріям </h1><p>id: {cat_id} </p>')
 
 def categories_by_slug(request, cat_slug):
